@@ -11,5 +11,5 @@ extern int run_pid;                 // PID of current selected process to run, 0
 extern q_t ready_q, run_q;          // ready and runable PID's
 extern pcb_t pcb[PROC_NUM];         // 20 Process Control Blocks
 extern char proc_stack[PROC_NUM][PROC_STACK_SIZE]; // 20 process runtime stacks
-
+extern unsigned int timer_ticks; 
 #endif                              // endif of ifndef

@@ -12,7 +12,7 @@ __BEGIN_DECLS
 
 void TimerEvent(void);            // coded in events.S, assembler won't like this syntax
 void ProcLoader(proc_frame_t *);  // coded in events.S
-
+void SyscallEvent(void);
 __END_DECLS
 
 #endif // ifndef ASSEMBLER

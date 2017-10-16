@@ -6,27 +6,33 @@
 #include "spede.h"      // cons_xxx below needs
 #include "data.h"       // current_pid needed below
 #include "proc.h"       // prototypes of processes
+#include "syscalls.h"
 
 void SystemProc(void) {
-   int i;
+  int i;
+   
+   while(1) 
+   {
+	 //cons_printf("0 ");
 
-   while(1) {
-      cons_printf( "0 ");    // SystemProc has PID 0
-      for(i=0; i < LOOP ; i++){ asm("inb $0x80");}  // to cause delay approx 1 second
-	
+	 
+	//for(i=0;i<LOOP;i++)
+	//{
+		
+		asm("inb $0x80");
+	//}
+ 
    }
-
-
 }
 
 void UserProc(void) {
-   int i;
-
+   
+   
+   char my_str[]=" ";
    while(1) {
-     cons_printf("%p", run_pid);
-     for(i=0;i<LOOP;i++){
-		asm("inb $0x80");  // to cause delay approx 1 second
-	} //show on Target PC its own PID (run_pid) using cons_printf()
-     
+     my_str[0] = GetPid() + '0';// fill out 1st space
+     Write(STDOUT , my_str);
+     //cons_printf("%d", run_pid);//    // STDOUT fileno == 1
+     Sleep(GetPid() % 5);       // sleep for a fes seconds(PID 5?)
    }
 }
